@@ -1,7 +1,9 @@
+import 'package:cookipidia/screens/explore_screen.dart';
 import 'package:flutter/material.dart';
-import 'card1.dart';
-import 'card2.dart';
-import 'card3.dart';
+import 'components/card1.dart';
+import 'components/card2.dart';
+import 'screens/recipes_screen.dart';
+import 'components/card3.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,9 +17,9 @@ class _HomeState extends State<Home> {
 
 // 8
   static List<Widget> pages = <Widget>[
-    const Card1(),
-    const Card2(),
-    const Card3(),
+    ExploreScreen(),
+    RecipesScreen(),
+    Container(color: Colors.blue),
   ];
 
 // 9
@@ -32,7 +34,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Cookipedia',
+          'Cookipidia',
 // 2
           style: Theme.of(context).textTheme.headline6,
         ),
@@ -46,16 +48,16 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card2',
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card3',
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
         ],
       ),
