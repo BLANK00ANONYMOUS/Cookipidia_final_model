@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'cookipidia_theme.dart';
 import 'home.dart';
+import 'package:provider/provider.dart';
+import 'models/models.dart';
 
 void main() {
   runApp(const Cookipidia());
@@ -18,9 +20,15 @@ class Cookipidia extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       title: 'Cookipidia',
-      home: const Home(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => TabManager()),
+          ChangeNotifierProvider(create: (context) => GroceryManager()),
+        ],
+        child: const Home(),
+      ),
     );
   }
 }
 
-// PAGE - 194
+// PAGE - 226
