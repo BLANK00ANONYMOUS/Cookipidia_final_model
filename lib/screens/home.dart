@@ -49,13 +49,17 @@ class _HomeState extends State<Home> {
               profileButton(),
             ],
           ),
-          body: IndexedStack(index: widget.currentTab, children: pages),
+          body: IndexedStack(
+            index: widget.currentTab,
+            children: pages,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor:
                 Theme.of(context).textSelectionTheme.selectionColor,
             currentIndex: widget.currentTab,
             onTap: (index) {
-              Provider.of<AppStateManager>(context, listen: false).goToTab(index);
+              Provider.of<AppStateManager>(context, listen: false)
+                  .goToTab(index);
             },
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
