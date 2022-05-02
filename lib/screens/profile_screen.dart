@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cookipidia/models/cookipidia_pages.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -101,13 +105,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
+  File? image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) {
+        return;
+      }
+      final imageTemporary = File(image.path);
+      setState(() {
+        this.image = imageTemporary;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick the image: $e');
+    }
+  }
   Widget buildProfile() {
     return Column(
       children: [
-        CircleImage(
-          imageProvider: AssetImage(widget.user.profileImageUrl),
-          imageRadius: 60.0,
+        GestureDetector(
+          onTap: () => pickImage() ,
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 20,
+            child: CircleAvatar(
+              radius: 20 - 5,
+              backgroundImage: ,
+            ),
+          ),
         ),
         const SizedBox(height: 16.0),
         Text(
