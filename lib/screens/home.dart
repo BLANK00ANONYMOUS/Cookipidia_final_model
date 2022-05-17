@@ -1,4 +1,7 @@
+import 'package:cookipidia/screens/my_recipes_list.dart';
+import 'package:cookipidia/screens/shopping_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../models/cookipidia_pages.dart';
 import '../models/models.dart';
@@ -33,6 +36,8 @@ class _HomeState extends State<Home> {
     ExploreScreen(),
     RecipesScreen(),
     const GroceryScreen(),
+    MyRecipesList(),
+    ShoppingList(),
   ];
 
   @override
@@ -61,18 +66,26 @@ class _HomeState extends State<Home> {
               Provider.of<AppStateManager>(context, listen: false)
                   .goToTab(index);
             },
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.explore),
                 label: 'Explore',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.book),
+                icon: Icon(Icons.food_bank),
                 label: 'Recipes',
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.list),
                 label: 'To Buy',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.bookmarks),
+                label: 'BookMarks',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.file_copy_sharp),
+                label: 'Groceries',
               ),
             ],
           ),

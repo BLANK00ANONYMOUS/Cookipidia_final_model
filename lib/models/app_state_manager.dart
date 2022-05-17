@@ -8,6 +8,8 @@ class CookipidiaTab {
   static const int explore = 0;
   static const int recipes = 1;
   static const int toBuy = 2;
+  static const int bookmarks = 3;
+  static const int groceries = 4;
 }
 
 class AppStateManager extends ChangeNotifier {

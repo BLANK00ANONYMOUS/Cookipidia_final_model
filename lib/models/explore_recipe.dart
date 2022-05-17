@@ -1,4 +1,4 @@
-part 'ingredient.dart';
+part 'ingredients.dart';
 part 'instruction.dart';
 
 class RecipeCardType {

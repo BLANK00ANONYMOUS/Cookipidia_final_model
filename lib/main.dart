@@ -7,12 +7,29 @@ import 'package:provider/provider.dart';
 import 'models/models.dart';
 import 'navigation/app_router.dart';
 
-void main() {
-  runApp(const Cookipidia());
+
+import 'package:cookipidia/data/user_dao.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cookipidia/data/repository.dart';
+
+import 'package:cookipidia/network/service_interface.dart';
+import 'package:cookipidia/network/recipe_service.dart';
+
+import 'package:cookipidia/data/moor/moor_repository.dart';
+import 'package:cookipidia/data/message_dao.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final repository = MoorRepository();
+  await repository.init();
+  runApp(Cookipidia(repository: repository,));
 }
 
 class Cookipidia extends StatefulWidget {
-  const Cookipidia({Key? key}) : super(key: key);
+  final Repository repository;
+  const Cookipidia({Key? key, required this.repository,}) : super(key: key);
 
   @override
   State<Cookipidia> createState() => _CookipidiaState();
@@ -39,6 +56,14 @@ class _CookipidiaState extends State<Cookipidia> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<UserDao>(
+          lazy: false,
+          create: (context) => UserDao(),
+        ),
+        Provider<MessageDao>(
+          lazy: false,
+          create: (context) => MessageDao(),
+        ),
         ChangeNotifierProvider(
           create: (context) => _groceryManager,
         ),
@@ -47,6 +72,15 @@ class _CookipidiaState extends State<Cookipidia> {
         ),
         ChangeNotifierProvider(
           create: (context) => _appStateManager,
+        ),
+        Provider<Repository>(
+          lazy: false,
+          create: (_) => widget.repository,
+          dispose: (_, Repository repository) => repository.close(),
+        ),
+        Provider<ServiceInterface>(
+          create: (_) => RecipeService.create(),
+          lazy: false,
         ),
       ],
       child: Consumer<ProfileManager>(

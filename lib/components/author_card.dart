@@ -27,42 +27,42 @@ class _AuthorCardState extends State<AuthorCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-// 1
+
           Row(
             children: [
-              CircleImage(
-                imageProvider: widget.imageProvider,
-                imageRadius: 25,
-              ),
-// 2
-              const SizedBox(width: 8),
-// 3
+              // CircleImage(
+              //   imageProvider: widget.imageProvider,
+              //   imageRadius: 25,
+              // ),
+              // const SizedBox(width: 8),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.authorName,
-                    style: CookipidiaTheme.lightTextTheme.headline3,
+                    "Prepare the best Gujiya",
+                    style: CookipidiaTheme.darkTextTheme.headline3,
                   ),
                   Text(
-                    widget.title,
-                    style: CookipidiaTheme.lightTextTheme.bodyText1,
+                    // widget.title,
+                    "Gujiya Champ",
+                    style: CookipidiaTheme.darkTextTheme.bodyText1,
                   )
                 ],
               ),
             ],
           ),
-          IconButton(
-// 4
-              icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
-              iconSize: 30,
-              color: Colors.red[400],
-// 5
-              onPressed: () {
-                setState(() {
-                  _isFavorited = !_isFavorited;
-                });
-              }),
+          // IconButton(
+          //
+          //     icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
+          //     iconSize: 30,
+          //     color: Colors.red[400],
+          //
+          //     onPressed: () {
+          //       setState(() {
+          //         _isFavorited = !_isFavorited;
+          //       });
+          //     }),
         ],
       ),
     );

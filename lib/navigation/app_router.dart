@@ -3,20 +3,13 @@ import 'package:flutter/material.dart';
 import '../models/models.dart';
 import '../screens/screens.dart';
 
-// 1
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-// 2
+
   @override
   final GlobalKey<NavigatorState> navigatorKey;
-
-// 3
   final AppStateManager appStateManager;
-
-// 4
   final GroceryManager groceryManager;
-
-// 5
   final ProfileManager profileManager;
 
   AppRouter({
@@ -39,12 +32,10 @@ class AppRouter extends RouterDelegate
 
   @override
   Widget build(BuildContext context) {
-// 7
+
     return Navigator(
-// 8
       key: navigatorKey,
       onPopPage: _handlePopPage,
-// 9
       pages: [
         if (!appStateManager.isInitialized) SplashScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
@@ -56,24 +47,23 @@ class AppRouter extends RouterDelegate
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(
             onCreate: (item) {
-// 3
               groceryManager.addItem(item);
             },
             onUpdate: (item, index) {
-// 4 No update
+
             },
           ),
         if (groceryManager.selectedIndex != -1)
-// 2
+
           GroceryItemScreen.page(
               item: groceryManager.selectedGroceryItem,
               index: groceryManager.selectedIndex,
               onUpdate: (item, index) {
-// 3
+
                 groceryManager.updateItem(item, index);
               },
               onCreate: (_) {
-// 4 No create
+
               }
           ),
         if (profileManager.didSelectUser)
@@ -84,7 +74,7 @@ class AppRouter extends RouterDelegate
     );
   }
 
-  // TODO: Add _handlePopRange
+  
   bool _handlePopPage(Route<dynamic> route, result) {
     if (!route.didPop(result)) {
       return false;
@@ -104,7 +94,7 @@ class AppRouter extends RouterDelegate
     return true;
   }
 
-//10
+
   @override
   Future<void> setNewRoutePath(configuration) async => null;
 }

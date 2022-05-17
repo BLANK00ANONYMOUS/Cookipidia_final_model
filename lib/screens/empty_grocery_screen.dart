@@ -18,7 +18,6 @@ class EmptyGroceryScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
-// 2
               child: AspectRatio(
                 aspectRatio: 1 / 1,
                 child: Image.asset('assets/cookipidia_assets/empty_list.png'),
