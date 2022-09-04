@@ -1,6 +1,6 @@
 # Cookipidia
 
-This is the final model of our minor project.
+This is the final model of minor project.
 
 ## Getting Started
 
